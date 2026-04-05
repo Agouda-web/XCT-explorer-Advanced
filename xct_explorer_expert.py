@@ -3,7 +3,6 @@ import numpy as np            # <2      #Note that the update V2 released June20
 import pandas as pd            # 1.5.3
 import streamlit as st          # 1.36.0  #Note that 1.37.0 is incompatible
 import altair as alt            # 5.1.2
-from streamlit_gsheets import GSheetsConnection   # 0.0.4
 
 ##### update Sep2024: estetic improvements, typo corrections, new tab to create new phases with option to load it
 
@@ -47,14 +46,11 @@ with tabInstructions:
     st.write('Note 3: consider the Experiment Time is just a rough approximation')
     st.write('**Tip:** data in tables can be saved as csv and plots can be saved as image or Jason and can be edited in Vega')
 
-@st.cache_data # Currently is using a database uploaded in google sheets. the scanner specific settings could also be loaded 
+@st.cache_data
 def loadDatabase():
-    #url= "https://docs.google.com/spreadsheets/d/1t8-3UUnGjH2Nv7vF2iHoj5NkEFeWftml9qhTTv3fE4A/edit?usp=sharing"
-    # Create a connection object.
-    conn = st.connection("gsheets", type=GSheetsConnection)
-    phaseData = conn.read()       #if specific url is used (spreadsheet=url)
-    return phaseData
-database=loadDatabase()
+    """Load phases.csv from repo - no Google Sheets needed"""
+    return pd.read_csv('phases.csv')
+database = loadDatabase()
 allPhases= database.columns.values.tolist()
 newPhases=['newPhase1','newPhase2','newPhase3']
 allPhases.extend(newPhases)
