@@ -7,12 +7,12 @@ import altair as alt            # 5.1.2
 ##### update Sep2024: estetic improvements, typo corrections, new tab to create new phases with option to load it
 
 st.set_page_config(layout='wide',page_title='XCT-Explorer-Advanced v130924')
-tabCitation, tabInstructions, tabGeometry, tabComposition, tabDatabase, tabSummary= st.tabs(['Disclosure', 'Instructions',': blue[Geometric Parameters]',': violet[Composition Parameters]',' Database', 'Summary'])
+tabCitation, tabInstructions, tabGeometry, tabComposition, tabDatabase, tabSummary= st.tabs(['Disclosure', 'Instructions',':blue[Geometric Parameters]',':violet[Composition Parameters]',' Database', 'Summary'])
 
 with tabCitation:
     st.write('The XCT-Explorer-Advanced is a graphic user interface designed to be an intuitive and interactive tool to help plan CT experiments. New users are advised to use the simplified version of this app https://xct-explorer-v1p4.streamlit.app/. Note that the advanced features are experimental')
     st.subheader ('Citation')
-    st.write ('If you find XCT-explorer useful for the planning of your experiment, please cite the publication: blue[https://doi.org/10.1016/j.tmater.2024.100041]. The advanced features were not peer-reviewed') 
+    st.write ('If you find XCT-explorer useful for the planning of your experiment, please cite the publication:blue[https://doi.org/10.1016/j.tmater.2024.100041]. The advanced features were not peer-reviewed') 
     st.write ('Advanced features: possibility to add phases that are not in the database, select the filter composition, manually adjust the filter thickness, export the list of parameters')
     st.subheader('Important disclaimer')
     st.write ('Always interpret the results critically and discuss your assessment with a CT expert')
