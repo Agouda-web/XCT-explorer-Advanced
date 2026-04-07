@@ -295,19 +295,19 @@ with tabComposition:
 st.divider()
 col5,col4=st.columns(2,gap='large')
 with col4:
-       st.subheader('Total transmission',
+st.subheader('Total transmission',
                   help='Percent of x-rays that penetrate through the :blue[Filter (light blue)], the :green[Sample (green)] and the :orange[Sample + Filter (orange)] at various energies')
-        dfTotalTransm4Plot2, energyAt10percTransm = transmission()
-        st.write(':green[Sample]  -  :blue[Filter]  -  :orange[Sample+Filter]')
-        with st.expander('Transmission Table'):
-            st.table(dfTotalTransm4Plot2)    
+dfTotalTransm4Plot2, energyAt10percTransm = transmission()
+st.write(':green[Sample]  -  :blue[Filter]  -  :orange[Sample+Filter]')
+with st.expander('Transmission Table'):
+st.table(dfTotalTransm4Plot2)    
 with col5:
-        st.subheader('Attenuation',
+st.subheader('Attenuation',
                   help='Energies with large difference between curves give better contrast. Note: if the curves are matching the phases will have similar greyvalues in the final image)')
-       # attenuation_energy()
-        st.write(':grey[Each line corresponds to a phase selected with the same color]')
-        with st.expander('Database of attenuation coefficients'):
-            st.table(database)
+attenuation_energy()
+st.write(':grey[Each line corresponds to a phase selected with the same color]')
+with st.expander('Database of attenuation coefficients'):
+st.table(database)
 
 ############################ Display the sidebar ################################
 st.sidebar.title('  ') #just some space
