@@ -297,7 +297,7 @@ col5,col4=st.columns(2,gap='large')
 with col4:
     st.subheader('Total transmission',
                   help='Percent of x-rays that penetrate through the :blue[Filter (light blue)], the :green[Sample (green)] and the :orange[Sample + Filter (orange)] at various energies')
-dfTotalTransm4Plot2, energyAt10percTransm = transmission()
+dfTotalTransm4Plot2= transmission()
 st.write(':green[Sample]  -  :blue[Filter]  -  :orange[Sample+Filter]')
 with st.expander('Transmission Table'):
     st.table(dfTotalTransm4Plot2)    
