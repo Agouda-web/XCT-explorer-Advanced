@@ -116,7 +116,7 @@ def vs_diameter():
         st.session_state['DataSize']=1.2
     plotMark = alt.Chart(markPoint,height=400,width=600).mark_point(color='red',size=120,fill='red').encode(x=alt.X('VS:Q',title='Voxel Size (µm)'),y=alt.Y('Diam:Q',title='Diameter (mm)'))
     plotAndMark=plot+plotMark
-    st.altair_chart(plotAndMark,use_container_width=False)  
+    st.altair_chart(plotAndMark,width='content')  
 
 ############## Plot Attenuation curves in the Composition Tab ###############################     
 def attenuation_energy():
@@ -193,7 +193,7 @@ def transmission():
                 ).mark_line(color='lightblue').encode(x=alt.X('Energy (kV):Q').scale(domain=(20,180)),
                                                         y=alt.Y('Filter',title='Total Transmission (%)').scale(domain=(0,100))).interactive()
     plot=plotSample+plotSample_Filter+plotFilter
-    st.altair_chart(plot,use_container_width=True)
+    st.altair_chart(plot,width='stretch')
     return dfTotalTransm4Plot
 
 ##################### Calculates the minimum feature of interest for the sidebar ############################
@@ -260,7 +260,7 @@ with tabDatabase:
         plot3= alt.Chart(newDatabase2,width='container',height=400).mark_line(color='green').encode(
                         x=alt.X('Energy (kV):Q').scale(domain=(10,180)),y=alt.Y('newPhase3:Q',title='Attenuation Coefficient (cm-1)').scale(type="log")).interactive()
         plot=plot1+plot2+plot3
-        st.altair_chart(plot,use_container_width=True) 
+        st.altair_chart(plot,width='stretch') 
 
 ############################ Controls the display in the tab Composition ################################
 with tabComposition:
