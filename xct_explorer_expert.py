@@ -193,7 +193,7 @@ def transmission():
                 ).mark_line(color='lightblue').encode(x=alt.X('Energy (kV):Q').scale(domain=(20,180)),
                                                         y=alt.Y('Filter',title='Total Transmission (%)').scale(domain=(0,100))).interactive()
     plot=plotSample+plotSample_Filter+plotFilter
-    st.altair_chart(plot,use_container_width=True)
+    st.altair_chart(plot,width='stretch')
     return dfTotalTransm4Plot
 
 ##################### Calculates the minimum feature of interest for the sidebar ############################
@@ -296,7 +296,7 @@ st.divider()
 col5,col4=st.columns(2,gap='large')
 with col4:
     st.subheader('Total transmission',
-                  help='Percent of x-rays that penetrate through the :blue[Filter (light blue)], the :green[Sample (green)] and the :orange[Sample + Filter (orange)] at various energies')
+                  help='Percent of x-rays that penetrate through the :blue [Filter (light blue)], the : green[Sample (green)] and the : orange[Sample + Filter (orange)] at various energies')
 dfTotalTransm4Plot2= transmission()
 st.write(':green[Sample]  -  :blue[Filter]  -  :orange[Sample+Filter]')
 with st.expander('Transmission Table'):
