@@ -301,13 +301,20 @@ dfTotalTransm4Plot2= transmission()
 st.write(':green[Sample]  -  :blue[Filter]  -  :orange[Sample+Filter]')
 with st.expander('Transmission Table'):
     st.table(dfTotalTransm4Plot2)    
-with col5:
-    st.subheader('Attenuation',
-                  help='Energies with large difference between curves give better contrast. Note: if the curves are matching the phases will have similar greyvalues in the final image)')
-attenuation_energy()
-st.write(':grey[Each line corresponds to a phase selected with the same color]')
-with st.expander('Database of attenuation coefficients'):
-    st.table(database)
+
+    with col5:
+    st.subheader(
+        'Attenuation',
+        help='Energies with large difference between curves give better contrast. '
+             'Note: if the curves are matching the phases will have similar greyvalues in the final image'
+    )
+
+    attenuation_energy()
+
+    st.write(':grey[Each line corresponds to a phase selected with the same color]')
+
+    with st.expander('Database of attenuation coefficients'):
+        st.table(database)
 
 ############################ Display the sidebar ################################
 st.sidebar.title('  ') #just some space
