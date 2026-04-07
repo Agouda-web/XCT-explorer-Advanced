@@ -141,7 +141,7 @@ def attenuation_energy():
     plot4= alt.Chart(database,width='container',height=400).mark_line(color='red').encode(
                         x=alt.X('Energy (kV):Q').scale(domain=(10,180)),y=alt.Y(menuPhase4,title='Attenuation Coefficient (cm-1)').scale(type="log")).interactive()  
     plot=plot1 + plot2 + plot3 + plot4      
-    st.altair_chart(plot,use_container_width=True)
+    st.altair_chart(plot,width='stretch')
 def transmission():
     ########### Lambert-Beer law applied to the seleted phases, volume fractions and sample diameter
     if menuPhase1 == 'newPhase1':
