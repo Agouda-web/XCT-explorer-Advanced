@@ -292,7 +292,7 @@ with tabComposition:
         st.session_state['maximumEnergy']=testEmax
 
 ############################ Display plots ################################
-   st.divider()
+st.divider()
     col5,col4=st.columns(2,gap='large')
    with col4:
        st.subheader('Total transmission',
