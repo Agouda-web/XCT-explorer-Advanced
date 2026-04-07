@@ -193,7 +193,7 @@ def transmission():
                 ).mark_line(color='lightblue').encode(x=alt.X('Energy (kV):Q').scale(domain=(20,180)),
                                                         y=alt.Y('Filter',title='Total Transmission (%)').scale(domain=(0,100))).interactive()
     plot=plotSample+plotSample_Filter+plotFilter
-    st.altair_chart(plot,width='stretch')
+    st.altair_chart(plot,use_container_width=True)
     return dfTotalTransm4Plot
 
 ##################### Calculates the minimum feature of interest for the sidebar ############################
