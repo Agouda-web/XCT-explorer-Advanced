@@ -308,7 +308,7 @@ with col5:
              'Note: if the curves are matching the phases will have similar greyvalues in the final image')
 
 attenuation_energy()
-    st.write(':grey[Each line corresponds to a phase selected with the same color]')
+st.write(':grey[Each line corresponds to a phase selected with the same color]')
 with st.expander('Database of attenuation coefficients'):
     st.table(database)
 
