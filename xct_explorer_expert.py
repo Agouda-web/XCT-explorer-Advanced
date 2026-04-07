@@ -298,6 +298,7 @@ with tabComposition:
         st.subheader('Total transmission',
                   help='Percent of x-rays that penetrate through the :blue[Filter (light blue)], the :green[Sample (green)] and the :orange[Sample + Filter (orange)] at various energies')
         dfTotalTransm4Plot2 = transmission()
+        selection = alt.selection_single(name='transmission_select')
         st.write(':green[Sample]  -  :blue[Filter]  -  :orange[Sample+Filter]')
         with st.expander('Transmission Table'):
             st.table(dfTotalTransm4Plot2)    
