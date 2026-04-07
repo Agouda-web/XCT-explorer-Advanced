@@ -293,7 +293,7 @@ with tabComposition:
 
 ############################ Display plots ################################
 st.divider()
-    col5,col4=st.columns(2,gap='large')
+    col5, col4=st.columns(2,gap='large')
    with col4:
        st.subheader('Total transmission',
                   help='Percent of x-rays that penetrate through the :blue[Filter (light blue)], the :green[Sample (green)] and the :orange[Sample + Filter (orange)] at various energies')
