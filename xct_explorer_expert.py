@@ -291,26 +291,53 @@ with tabComposition:
         testEmax=st.slider('Maximum Energy (kV)', value=160, min_value=0, max_value=180, step=5,help='Tip: aim at a 160 kV, only use lower if necessary for good contrast')
         st.session_state['maximumEnergy']=testEmax
 
-############################ Display plots ################################
-st.divider()
-col5,col4=st.columns(2,gap='large')
-with col4:
-    st.subheader('Total transmission',
-                  help='Percent of x-rays that penetrate through the :blue [Filter (light blue)], the : green[Sample (green)] and the : orange[Sample + Filter (orange)] at various energies')
-dfTotalTransm4Plot2= transmission()
-st.write(':green[Sample]  -  :blue[Filter]  -  :orange[Sample+Filter]')
-with st.expander('Transmission Table'):
-    st.table(dfTotalTransm4Plot2)    
 
-with col5:
-    st.subheader('Attenuation',
-        help='Energies with large difference between curves give better contrast. '
-             'Note: if the curves are matching the phases will have similar greyvalues in the final image')
+############################ Display plots ############################
+with tabComposition:
+    st.divider()
 
-attenuation_energy()
-st.write(':grey[Each line corresponds to a phase selected with the same color]')
-with st.expander('Database of attenuation coefficients'):
-    st.table(database)
+    col5, col4 = st.columns(2, gap="large")
+
+    with col4:
+        st.subheader(
+            "Total transmission",
+            help="Percentage of X-rays transmitted through the sample, "
+                 "filter, and sample + filter."
+        )
+
+        dfTotalTransm4Plot2 = transmission()
+
+        st.write(
+            ":green[Sample] - :blue[Filter] - "
+            ":orange[Sample + Filter]"
+        )
+
+        with st.expander("Transmission Table"):
+            st.dataframe(
+                dfTotalTransm4Plot2,
+                use_container_width=True,
+                hide_index=True
+            )
+
+    with col5:
+        st.subheader(
+            "Attenuation",
+            help="Energies with large differences between "
+                 "attenuation curves provide better phase contrast."
+        )
+
+        attenuation_energy()
+
+        st.write(
+            ":grey[Each line corresponds to a selected phase.]"
+        )
+
+        with st.expander("Database of attenuation coefficients"):
+            st.dataframe(
+                database,
+                use_container_width=True,
+                hide_index=True
+            )
 
 ############################ Display the sidebar ################################
 st.sidebar.title('  ') #just some space
