@@ -292,25 +292,33 @@ with tabComposition:
         st.session_state['maximumEnergy']=testEmax
 
 
-############################ Display plots ############################
+
+############################ Display plots ################################
 with tabComposition:
     st.divider()
+    col5, col4 = st.columns(2, gap='large')
 
-    col5, col4 = st.columns(2, gap="large")
+    with col5:
+        st.subheader(
+            'Attenuation',
+            help='Energies with large difference between curves give better contrast. '
+                 'Note: if the curves are matching, the phases will have similar grey values '
+                 'in the final image'
+        )
+        attenuation_energy()
+        st.write(':grey[Each line corresponds to a phase selected with the same color]')
+        with st.expander('Database of attenuation coefficients'):
+            st.table(database)
 
     with col4:
         st.subheader(
-            "Total transmission",
-            help="Percentage of X-rays transmitted through the sample, "
-                 "filter, and sample + filter."
+            'Total transmission',
+            help='Percent of x-rays that penetrate through the filter, sample, and sample + filter'
         )
-
         dfTotalTransm4Plot2 = transmission()
-
-        st.write(
-            ":green[Sample] - :blue[Filter] - "
-            ":orange[Sample + Filter]"
-        )
+        st.write(':green[Sample] - :blue[Filter] - :orange[Sample + Filter]')
+        with st.expander('Transmission Table'):
+            st.table(dfTotalTransm4Plot2)
 
         with st.expander("Transmission Table"):
             st.dataframe(
