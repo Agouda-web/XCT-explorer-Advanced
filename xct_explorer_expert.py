@@ -293,39 +293,31 @@ with tabComposition:
 
 
 
-############################ Display plots ################################
-with tabComposition:
+
+    ############################ Display plots ############################
     st.divider()
     col5, col4 = st.columns(2, gap='large')
 
-    with col5:
-        st.subheader(
-            'Attenuation',
-            help='Energies with large difference between curves give better contrast. '
-                 'Note: if the curves are matching, the phases will have similar grey values '
-                 'in the final image'
-        )
-        attenuation_energy()
-        st.write(':grey[Each line corresponds to a phase selected with the same color]')
-        with st.expander('Database of attenuation coefficients'):
-            st.table(database)
-
     with col4:
-        st.subheader(
-            'Total transmission',
-            help='Percent of x-rays that penetrate through the filter, sample, and sample + filter'
-        )
+        st.subheader('Total transmission')
+
         dfTotalTransm4Plot2 = transmission()
-        st.write(':green[Sample] - :blue[Filter] - :orange[Sample + Filter]')
+
+        st.write(':green[Sample] - :blue[Filter] - :orange[Sample+Filter]')
+
         with st.expander('Transmission Table'):
             st.table(dfTotalTransm4Plot2)
 
-        with st.expander("Transmission Table"):
-            st.dataframe(
-                dfTotalTransm4Plot2,
-                use_container_width=True,
-                hide_index=True
-            )
+    with col5:
+        st.subheader('Attenuation')
+
+        attenuation_energy()
+
+        st.write(':grey[Each line corresponds to a phase selected with the same color]')
+
+        with st.expander('Database of attenuation coefficients'):
+            st.table(database)
+
 
 
 ############################ Display the sidebar ################################
