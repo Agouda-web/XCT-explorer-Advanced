@@ -327,25 +327,6 @@ with tabComposition:
                 hide_index=True
             )
 
-    with col5:
-        st.subheader(
-            "Attenuation",
-            help="Energies with large differences between "
-                 "attenuation curves provide better phase contrast."
-        )
-
-        attenuation_energy()
-
-        st.write(
-            ":grey[Each line corresponds to a selected phase.]"
-        )
-
-        with st.expander("Database of attenuation coefficients"):
-            st.dataframe(
-                database,
-                use_container_width=True,
-                hide_index=True
-            )
 
 ############################ Display the sidebar ################################
 st.sidebar.title('  ') #just some space
