@@ -119,30 +119,120 @@ def vs_diameter():
     st.altair_chart(plotAndMark,width='content')  
 
 ############## Plot Attenuation curves in the Composition Tab ###############################     
+
 def attenuation_energy():
     if menuPhase1 == 'newPhase1':
-        plot1= alt.Chart(newDatabase2,width='container',height=400).mark_line(color='lightblue').encode(
-                        x=alt.X('Energy (kV):Q').scale(domain=(10,180)),y=alt.Y('newPhase1:Q',title='Attenuation Coefficient (cm-1)').scale(type="log")).interactive()
+        plot1 = alt.Chart(
+            newDatabase2, width='container', height=400
+        ).mark_line(color='lightblue').encode(
+            x=alt.X(
+                'Energy (kV):Q',
+                scale=alt.Scale(domain=(10, 180))
+            ),
+            y=alt.Y(
+                'newPhase1:Q',
+                title='Attenuation Coefficient (cm-1)',
+                scale=alt.Scale(type='log')
+            )
+        )
     else:
-        plot1= alt.Chart(database,width='container',height=400).mark_line(color='lightblue').encode(
-                        x=alt.X('Energy (kV):Q').scale(domain=(10,180)),y=alt.Y(menuPhase1,title='Attenuation Coefficient (cm-1)').scale(type="log")).interactive()
+        plot1 = alt.Chart(
+            database, width='container', height=400
+        ).mark_line(color='lightblue').encode(
+            x=alt.X(
+                'Energy (kV):Q',
+                scale=alt.Scale(domain=(10, 180))
+            ),
+            y=alt.Y(
+                menuPhase1,
+                title='Attenuation Coefficient (cm-1)',
+                scale=alt.Scale(type='log')
+            )
+        )
+
     if menuPhase2 == 'newPhase2':
-        plot2= alt.Chart(newDatabase2,width='container',height=400).mark_line(color='green').encode(
-                        x=alt.X('Energy (kV):Q').scale(domain=(10,180)),y=alt.Y('newPhase2:Q',title='Attenuation Coefficient (cm-1)').scale(type="log")).interactive()        
+        plot2 = alt.Chart(
+            newDatabase2, width='container', height=400
+        ).mark_line(color='green').encode(
+            x=alt.X(
+                'Energy (kV):Q',
+                scale=alt.Scale(domain=(10, 180))
+            ),
+            y=alt.Y(
+                'newPhase2:Q',
+                title='Attenuation Coefficient (cm-1)',
+                scale=alt.Scale(type='log')
+            )
+        )
     else:
-        plot2= alt.Chart(database,width='container',height=400).mark_line(color='green').encode(
-                        x=alt.X('Energy (kV):Q').scale(domain=(10,180)),y=alt.Y(menuPhase2,title='Attenuation Coefficient (cm-1)').scale(type="log")).interactive()
+        plot2 = alt.Chart(
+            database, width='container', height=400
+        ).mark_line(color='green').encode(
+            x=alt.X(
+                'Energy (kV):Q',
+                scale=alt.Scale(domain=(10, 180))
+            ),
+            y=alt.Y(
+                menuPhase2,
+                title='Attenuation Coefficient (cm-1)',
+                scale=alt.Scale(type='log')
+            )
+        )
+
     if menuPhase3 == 'newPhase3':
-        plot3= alt.Chart(newDatabase2,width='container',height=400).mark_line(color='green').encode(
-                        x=alt.X('Energy (kV):Q').scale(domain=(10,180)),y=alt.Y('newPhase3:Q',title='Attenuation Coefficient (cm-1)').scale(type="log")).interactive()        
+        plot3 = alt.Chart(
+            newDatabase2, width='container', height=400
+        ).mark_line(color='green').encode(
+            x=alt.X(
+                'Energy (kV):Q',
+                scale=alt.Scale(domain=(10, 180))
+            ),
+            y=alt.Y(
+                'newPhase3:Q',
+                title='Attenuation Coefficient (cm-1)',
+                scale=alt.Scale(type='log')
+            )
+        )
     else:
-        plot3= alt.Chart(database,width='container',height=400).mark_line(color='green').encode(
-                        x=alt.X('Energy (kV):Q').scale(domain=(10,180)),y=alt.Y(menuPhase3,title='Attenuation Coefficient (cm-1)').scale(type="log")).interactive()    
-    plot4= alt.Chart(database,width='container',height=400).mark_line(color='red').encode(
-                        x=alt.X('Energy (kV):Q').scale(domain=(10,180)),y=alt.Y(menuPhase4,title='Attenuation Coefficient (cm-1)').scale(type="log")).interactive()  
-    plot = plot1 + plot2 + plot3 + plot4
-    st.altair_chart(plot, use_container_width=True)
+        plot3 = alt.Chart(
+            database, width='container', height=400
+        ).mark_line(color='green').encode(
+            x=alt.X(
+                'Energy (kV):Q',
+                scale=alt.Scale(domain=(10, 180))
+            ),
+            y=alt.Y(
+                menuPhase3,
+                title='Attenuation Coefficient (cm-1)',
+                scale=alt.Scale(type='log')
+            )
+        )
+
+    plot4 = alt.Chart(
+        database, width='container', height=400
+    ).mark_line(color='red').encode(
+        x=alt.X(
+            'Energy (kV):Q',
+            scale=alt.Scale(domain=(10, 180))
+        ),
+        y=alt.Y(
+            menuPhase4,
+            title='Attenuation Coefficient (cm-1)',
+            scale=alt.Scale(type='log')
+        )
+    )
+
+    plot = (
+        plot1 + plot2 + plot3 + plot4
+    ).properties(
+        height=400
+    ).interactive()
+
+    st.altair_chart(plot, width='stretch')
+
+
 def transmission():
+
     ########### Lambert-Beer law applied to the seleted phases, volume fractions and sample diameter
     if menuPhase1 == 'newPhase1':
         attPhase1=newDatabase2[menuPhase1]
