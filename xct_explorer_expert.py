@@ -181,20 +181,56 @@ def transmission():
     totalTransmFilter=totalTransm*transmFilter/100
 
     ###################### Plot total transmission ########################################
-    TotalTransm4Plot={'Energy (kV)':energy,'Sample':totalTransm,'Filter':transmFilter, 'Filter+Sample':totalTransmFilter}
-    dfTotalTransm4Plot=pd.DataFrame(TotalTransm4Plot)
-    plotSample= alt.Chart(dfTotalTransm4Plot,width='container',height=400
-                    ).mark_line(color='green').encode(x=alt.X('Energy (kV):Q').scale(domain=(20,180)),
-                                                            y=alt.Y('Sample',title='Total Transmission (%)').scale(domain=(0,100))).interactive()
-    plotSample_Filter=alt.Chart(dfTotalTransm4Plot,width='container',height=400
-                    ).mark_line(color='orange').encode(x=alt.X('Energy (kV):Q').scale(domain=(20,180)),
-                                                            y=alt.Y('Filter+Sample',title='Total Transmission (%)').scale(domain=(0,100))).interactive()
-    plotFilter=alt.Chart(dfTotalTransm4Plot,width='container',height=400
-                ).mark_line(color='lightblue').encode(x=alt.X('Energy (kV):Q').scale(domain=(20,180)),
-                                                        y=alt.Y('Filter',title='Total Transmission (%)').scale(domain=(0,100))).interactive()
-    plot = (plotSample + plotSample_Filter + plotFilter).interactive()
+    
+    TotalTransm4Plot = {
+        'Energy (kV)': energy,
+        'Sample': totalTransm,
+        'Filter': transmFilter,
+        'Filter+Sample': totalTransmFilter
+    }
+
+    dfTotalTransm4Plot = pd.DataFrame(TotalTransm4Plot)
+
+    base = alt.Chart(dfTotalTransm4Plot).encode(
+        x=alt.X(
+            'Energy (kV):Q',
+            title='Energy (kV)',
+            scale=alt.Scale(domain=[20, 180])
+        )
+    )
+
+    plotSample = base.mark_line(color='green').encode(
+        y=alt.Y(
+            'Sample:Q',
+            title='Total Transmission (%)',
+            scale=alt.Scale(domain=[0, 100])
+        )
+    )
+
+    plotSample_Filter = base.mark_line(color='orange').encode(
+        y=alt.Y(
+            'Filter+Sample:Q',
+            title='Total Transmission (%)',
+            scale=alt.Scale(domain=[0, 100])
+        )
+    )
+
+    plotFilter = base.mark_line(color='lightblue').encode(
+        y=alt.Y(
+            'Filter:Q',
+            title='Total Transmission (%)',
+            scale=alt.Scale(domain=[0, 100])
+        )
+    )
+
+    plot = (
+        plotSample + plotSample_Filter + plotFilter
+    ).properties(height=400).interactive()
+
     st.altair_chart(plot, width='stretch')
+
     return dfTotalTransm4Plot
+
 
 
 ##################### Calculates the minimum feature of interest for the sidebar ############################
